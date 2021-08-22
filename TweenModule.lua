@@ -10,8 +10,11 @@ function Tweening:Create(name, duration, properties)
 
     local InnerAnims = {}
 
-    function InnerAnims:Play(Animation)
-        Animation:Play()
+    function InnerAnims:Play(list)
+        list = list or {}
+        for i,v in next, list do
+            list:Play()
+        end
     end
 
     return InnerAnims
@@ -26,5 +29,5 @@ local Tween = loadstring(game:HttpGet("https://raw.githubusercontent.com/Cryptwe
 
 local hello = Tween:Create(itemName, 0.6, {Transparency = 1})
 
-Tween:Play(hello)
+Tween:Play({hello})
 ]]
