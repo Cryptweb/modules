@@ -22,7 +22,7 @@ return Tweening
 --[[
 usage:
 
-local Tween = loadstring(game:HttpGet("https://raw.githubusercontent.com/Cryptweb/modules/main/TweenModule"))()
+local Tween = loadstring(game:HttpGet("https://raw.githubusercontent.com/Cryptweb/modules/main/TweenModule.lua"))()
 
 local hello = Tween:Animate(itemName, 0.6, {Transparency = 1})
 
