@@ -58,15 +58,15 @@ local ValiantAimHacks = getgenv().ValiantAimHacks
 
 -- // Show FOV
 local circle = Drawingnew("Circle")
-circle.Transparency = 0
+circle.Transparency = 1
 circle.Thickness = 2
 circle.Color = Color3fromRGB(255, 0, 0)
 circle.Filled = false
 function ValiantAimHacks.updateCircle()
     if (circle) then
         -- // Set Circle Properties
-        circle.Visible = ValiantAimHacks.ShowFOV
-        circle.Radius = (ValiantAimHacks.FOV * 3)
+        circle.Visible = true
+        circle.Radius = (50 * 3)
         circle.Position = Vector2new(Mouse.X, Mouse.Y + GetGuiInset(GuiService).Y)
         circle.NumSides = ValiantAimHacks.FOVSides
 
