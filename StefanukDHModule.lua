@@ -40,7 +40,7 @@ getgenv().ValiantAimHacks = {
     FOVSides = 12,
     VisibleCheck = true,
     TeamCheck = true,
-    FOV = 50,
+    FOV = 101,
     HitChance = 100,
     Selected = LocalPlayer,
     SelectedPart = nil,
@@ -65,7 +65,7 @@ circle.Filled = false
 function ValiantAimHacks.updateCircle()
     if (circle) then
         -- // Set Circle Properties
-        circle.Visible = true
+        circle.Visible = false
         circle.Radius = (50 * 3)
         circle.Position = Vector2new(Mouse.X, Mouse.Y + GetGuiInset(GuiService).Y)
         circle.NumSides = ValiantAimHacks.FOVSides
