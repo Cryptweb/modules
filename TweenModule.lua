@@ -2,11 +2,13 @@ local TweenService = game:GetService("TweenService")
 
 local Tweening = {}
 
-function Tweening:Create(name, duration, properties)
-    duration = duration or .3
-    local TI = TweenInfo.new(duration, Enum.EasingStyle.Sine, Enum.EasingDirection.In)
+function Tweening:Create(obj, info, properties, callback)
+    local Tweening = TweenService:Create(obj, unpack(info), properties)
+    Tweening:Play()
     
-    local Tweening = TweenService:Create(name, TI, properties):Play()
+    if (callback) then
+        anim.Completed:Connect(callback) 
+    end
 end
 
 return Tweening
@@ -16,5 +18,7 @@ usage:
 
 local Tween = loadstring(game:HttpGet("https://raw.githubusercontent.com/Cryptweb/modules/main/TweenModule.lua"))()
 
-Tween:Create(itemName, 0.6, {Transparency = 1})
+Tween:Create(itemName, {1}, {Transparency = 1}, function()
+    print('Transparency is now 1')
+end)
 ]]
