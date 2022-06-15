@@ -3,8 +3,8 @@ local TweenService = game:GetService("TweenService")
 local Tweening = {}
 
 function Tweening:Create(obj, info, properties, callback)
-    local Tweening = TweenService:Create(obj, unpack(info), properties)
-    Tweening:Play()
+    local anim = TweenService:Create(obj, unpack(info), properties)
+    anim:Play()
     
     if (callback) then
         anim.Completed:Connect(callback) 
