@@ -9,10 +9,21 @@ function f.add(name, callback)
     f[name] = callback
 end
     
-function f.getFunctions()
-    return f
+function f.get(tbl)
+    return tbl
 end
     
+function f.insert(tbl)
+    for i, v in pairs(f) do
+        if (typeof(v) == 'function') then
+            if (i ~= 'get' and i ~= 'add' and i ~= 'insert') then
+                table.insert(tbl, i)
+                tbl[i] = v 
+            end
+        end
+    end
+end
+
 return f
 
 --[[
@@ -23,7 +34,7 @@ usage:
 local f = loadstring(game:HttpGet('https://raw.githubusercontent.com/Cryptweb/modules/main/FunctionHandler.lua'))()
 
 -- // Creating a function to redeem all of the game codes (Size Legends)
-f.add('redeemCodes', function()
+f.add('code', function()
     local player = game:GetService('Players').LocalPlayer
     local remote = player.PlayerGui.Codes.MainFrame.Redeem
     
@@ -34,13 +45,10 @@ f.add('redeemCodes', function()
     end
 end)
 
--- // Defining the variable that gets all the functions
-local functions = functionHandler.getFunctions()
+-- // Creating 2 new tables and inserting all of the functions into the first table, and getting all of the functions from the first table then inserting them into the new table (useless)
+local newtbl = {} local funcs = {} do f.insert(newtbl) funcs = f.get(newtbl) end
 
--- // If it fails to get/find the functions
-if (not functions) then return print('failed to find functions') end
-
--- // Using the redeem game codes function
-functions.redeemCodes()
+-- // Running the function
+funcs.code()
 
 ]]
