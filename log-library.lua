@@ -22,13 +22,14 @@
                                                                         Usage:
 -- // Set-up
 local log_library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Cryptweb/modules/main/log-library.lua"))();
+local script_name = 'script_name'
 
 -- // Calling the 'Log' function
-log_library:Log({ type = "DEBUG", text = "Initializing...", action = "write", name = "scriptname" });
-log_library:Log({ type = "DEBUG", text = "Initializing...", action = "print" }); -- // name (file name) is not necessary while calling the print function
+log_library:Log({ type = "DEBUG", text = "Initializing...", action = "write", name = script_name });
+log_library:Log({ type = "DEBUG", text = "Initializing...", action = "print" }); -- // name (file name) is not necessary while calling the print function (shouldn't be used for debugging)
 
 -- // Deleting the log file (if the debugging was successful)
-log_library:delete();
+log_library:delete(script_name);
                                                                                                                                                           ]]
 
 local library = {};
@@ -44,8 +45,8 @@ function createFile(args)
     shared.file = (filename .. '.log');
 end;
 
-function library:delete()
-    delfile(shared.file);
+function library:delete(name)
+    delfile(name .. '.log');
 end;
 
 function library:Log(args)
