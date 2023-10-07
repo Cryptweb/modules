@@ -57,3 +57,40 @@ function maid:cleanup()
 end;
 
 return maid;
+
+--[[
+
+example usage:
+
+----------------------------------------
+local m = loadstring(game:HttpGet('https://raw.githubusercontent.com/Cryptweb/modules/main/maid.lua'))().new();
+local user_input_service = game.UserInputService;
+
+local connection = user_input_service.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.Q then
+        print('Hello, World!');
+    end;
+end);
+local connection_handler = m:give_task(connection);
+
+local connection2 = user_input_service.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.T then
+        print('Hello, World!');
+    end;
+end);
+local connection_handler2 = m:give_task(connection2);
+
+game.UserInputService.InputBegan:Connect(function(a)
+    if a.KeyCode == Enum.KeyCode.C and connection_handler then
+        connection_handler.remove();
+        print('Removed task!');
+    end;
+
+    if a.KeyCode == Enum.KeyCode.R and next(m.tasks) ~= nil then
+        m:cleanup();
+        print('Cleaned up tasks!');
+    end;
+end);
+----------------------------------------
+
+]]
