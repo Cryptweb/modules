@@ -27,10 +27,10 @@ function eventHandler:on(event, handler)
 end;
 
 function eventHandler:fire(event, ...)
-    local handlers = self.handlers[event];
-    if handlers then
-        for i in handlers do
-            handlers[i](...);
+    local handler = self.handlers[event];
+    if handler then
+        for i in handler do
+            handler[i](...);
         end;
     end;
 end;
