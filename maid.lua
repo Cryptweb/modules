@@ -27,15 +27,13 @@ function maid:give_task(task)
 
             if self.tasks[task_id].Disconnect then
                 self.tasks[task_id]:Disconnect();
-                table.remove(self.tasks, task_id);
             elseif self.tasks[task_id].Remove then
                 self.tasks[task_id]:Remove();
-                table.remove(self.tasks, task_id);
             elseif self.tasks[task_id].Destroy then
                 self.tasks[task_id]:Remove();
-                table.remove(self.tasks, task_id);
             end;
-
+            
+            table.remove(self.tasks, task_id);
             return true;
         end;
     };
