@@ -3,10 +3,14 @@
 local maid = {};
 maid.__index = maid;
 
+local set_metatable = setmetatable;
+local table_remove = table.remove;
+local ipairs_ = ipairs;
+
 --- constructs the maid
 -- @constructor
 function maid.new()
-    local self = setmetatable({}, maid);
+    local self = set_metatable({}, maid);
     self.tasks = {};
     return self;
 end;
@@ -33,7 +37,7 @@ function maid:give_task(task)
                 self.tasks[task_id]:Remove();
             end;
             
-            table.remove(self.tasks, task_id);
+            table_remove(self.tasks, task_id);
             return true;
         end;
     };
@@ -41,7 +45,7 @@ end;
 
 -- disconnects every single task
 function maid:cleanup()
-    for id, task in pairs(self.tasks) do
+    for id, task in ipairs_(self.tasks) do
         if task.Disconnect then
             task:Disconnect()
         elseif task.Remove then
